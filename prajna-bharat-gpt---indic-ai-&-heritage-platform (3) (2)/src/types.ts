@@ -1,0 +1,391 @@
+export type NavigationTab =
+  | "chat"
+  | "explorer"
+  | "story"
+  | "gita"
+  | "quiz"
+  | "translate"
+  | "vault"
+  | "admin"
+  | "sankalpa";
+
+export type PersonaType = "scholar" | "sage" | "chronicler" | "sciences" | "storyteller";
+
+export interface PersonaInfo {
+  id: PersonaType;
+  name: string;
+  indicName: string;
+  tagline: string;
+  avatarIcon: string;
+  color: string;
+  bgGradient: string;
+  borderAccent: string;
+  description: string;
+  defaultStarters: string[];
+}
+
+export type IndicLanguageCode =
+  | "English"
+  | "Hindi"
+  | "Sanskrit"
+  | "Tamil"
+  | "Telugu"
+  | "Bengali"
+  | "Marathi"
+  | "Gujarati"
+  | "Kannada"
+  | "Malayalam"
+  | "Odia"
+  | "Punjabi";
+
+export interface LanguageOption {
+  code: IndicLanguageCode;
+  label: string;
+  native: string;
+  script: string;
+}
+
+export type AiMode = "balanced" | "fast" | "search" | "thinking";
+
+export interface GroundingSource {
+  title: string;
+  url: string;
+  snippet?: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  sender: "user" | "assistant";
+  text: string;
+  timestamp: string;
+  persona?: PersonaType;
+  language?: IndicLanguageCode;
+  isStreaming?: boolean;
+  mode?: AiMode;
+  sources?: GroundingSource[];
+  thoughtProcess?: string;
+}
+
+export type HeritageCategory =
+  | "all"
+  | "architecture"
+  | "sciences"
+  | "philosophy"
+  | "arts"
+  | "geography"
+  | "dynasties";
+
+export interface HeritageItem {
+  id: string;
+  title: string;
+  indicTitle: string;
+  category: HeritageCategory;
+  era: string;
+  century: string;
+  location: string;
+  region: "North" | "South" | "East" | "West" | "Central" | "Northeast" | "Pan-India";
+  image: string;
+  summary: string;
+  keyInsights: string[];
+  architecturalStyle?: string;
+  spiritualSignificance?: string;
+  scientificValue?: string;
+  suggestedPrompt: string;
+  unescoStatus?: boolean;
+}
+
+export interface StoryChoice {
+  id: string;
+  text: string;
+  theme?: string;
+}
+
+export interface StoryScene {
+  title: string;
+  chapter: string;
+  narrative: string;
+  moralOrWisdom?: string;
+  characterQuote?: string;
+  speaker?: string;
+  choices: StoryChoice[];
+  isEnding?: boolean;
+}
+
+export interface StorySession {
+  id: string;
+  theme: string;
+  title: string;
+  scenes: StoryScene[];
+  currentSceneIndex: number;
+  selectedChoicesHistory: string[];
+  savedAt?: string;
+}
+
+export interface WordBreakdown {
+  word: string;
+  meaning: string;
+}
+
+export interface ShlokaItem {
+  id: string;
+  source: string;
+  chapterVerse?: string;
+  theme: string;
+  sanskrit: string;
+  transliteration: string;
+  wordMeaning: WordBreakdown[];
+  translation: string;
+  context: string;
+  lifeGuidance: string;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+  category: string;
+  curiousFact?: string;
+}
+
+export interface UserBadge {
+  id: string;
+  name: string;
+  indicName: string;
+  icon: string;
+  description: string;
+  unlocked: boolean;
+  unlockedAt?: string;
+}
+
+export interface SavedItem {
+  id: string;
+  type: "chat" | "shloka" | "story" | "heritage" | "history";
+  title: string;
+  snippet: string;
+  date: string;
+  data: any;
+}
+
+export type HistoryCategory =
+  | "all"
+  | "vedic"
+  | "sciences"
+  | "dynasties"
+  | "arts"
+  | "freedom"
+  | "culture";
+
+export interface HistoryEventItem {
+  id: string;
+  title: string;
+  indicTitle: string;
+  dateStr: string;
+  month: number;
+  day: number;
+  year?: string;
+  era: string;
+  category: "vedic" | "sciences" | "dynasties" | "arts" | "freedom" | "culture";
+  location?: string;
+  summary: string;
+  detailedSignificance: string;
+  vedicTithiReference?: string;
+  keyTakeaways: string[];
+  historicalFigures?: string[];
+  suggestedPrompt: string;
+  sourceOrReference?: string;
+}
+
+export interface VedicPanchangInfo {
+  tithi: string;
+  masa: string;
+  paksha: string;
+  ritu: string;
+  nakshatra?: string;
+  astronomicalInsight?: string;
+  vedicEraYear?: string;
+}
+
+
+export interface GitaChapter {
+  chapterNumber: number;
+  sanskritTitle: string;
+  transliteration: string;
+  englishTitle: string;
+  verseCount: number;
+  theme: string;
+  coreSummary: string;
+  keyVerseSnippet: string;
+  keyInsight: string;
+  suggestedQuery: string;
+}
+
+export interface AppUser {
+  id: string;
+  name: string;
+  email: string;
+  passwordHash: string;
+  role: "user" | "admin";
+  createdAt: string;
+  lastLoginAt: string;
+  preferredLanguage?: IndicLanguageCode;
+}
+
+export interface AdminCredentials {
+  email: string;
+  password: string;
+  updatedAt: string;
+}
+
+export type AppTheme = "deep_night" | "temple_ivory";
+
+export type ToastType =
+  | "success"
+  | "info"
+  | "vault"
+  | "language"
+  | "theme"
+  | "audio"
+  | "karma"
+  | "warning"
+  | "error";
+
+export interface KarmaLevel {
+  level: number;
+  title: string;
+  indicTitle: string;
+  minPoints: number;
+  maxPoints: number;
+  color: string;
+  icon: string;
+  description: string;
+}
+
+export type KarmaCategory =
+  | "gita"
+  | "wisdom"
+  | "heritage"
+  | "explorer"
+  | "story"
+  | "quiz"
+  | "translate"
+  | "vault"
+  | "dialogue"
+  | "streak"
+  | "sankalpa"
+  | "general";
+
+export interface KarmaLogItem {
+  id: string;
+  activity: string;
+  points: number;
+  timestamp: string;
+  category: KarmaCategory;
+}
+
+export interface UserBadge {
+  id: string;
+  name: string;
+  indicName: string;
+  icon: string;
+  category: "wisdom" | "gita" | "heritage" | "language" | "mastery" | "community";
+  description: string;
+  criteria: string;
+  unlocked: boolean;
+  unlockedAt?: string;
+  rarity?: "Common" | "Sacred" | "Divine" | "Legendary";
+}
+
+export interface UserKarmaProfile {
+  totalPoints: number;
+  currentLevel: number;
+  streakDays: number;
+  lastActiveDate: string;
+  dailyBonusClaimedDate?: string;
+  badges: UserBadge[];
+  history: KarmaLogItem[];
+  stats: {
+    gitaVersesRead: number;
+    gitaChaptersExplored: number;
+    dailyWisdomReadCount: number;
+    heritageTopicsExplored: number;
+    storiesCompleted: number;
+    quizzesCompleted: number;
+    translationsDone: number;
+    vaultItemsSaved: number;
+    sankalpasSet?: number;
+    sankalpasFulfilled?: number;
+  };
+}
+
+export interface ToastNotification {
+  id: string;
+  title?: string;
+  message: string;
+  type?: ToastType;
+  duration?: number;
+  icon?: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+}
+
+// ========================
+// Sankalpa (Spiritual Intention) Journal Types
+// ========================
+
+export type SankalpaCategory =
+  | "shanti"    // Peace, Equanimity & Contentment (शांति व संतोष)
+  | "satya"     // Truth, Mindful & Pure Speech (सत्य व वाक्-शुद्धि)
+  | "tapas"     // Spiritual Discipline & Sadhana (तप व साधना)
+  | "karuna"    // Compassion & Selfless Service (करुणा व सेवा)
+  | "vairagya"  // Non-attachment & Surrender (वैराग्य व समर्पण)
+  | "dhairya"   // Courage, Resilience & Vitality (धैर्य व आंतरिक बल)
+  | "swadhyaya"; // Self-Study & Sacred Wisdom (स्वाध्याय व ज्ञान)
+
+export type SankalpaFulfillmentStatus =
+  | "in_progress"
+  | "fulfilled"
+  | "partially_fulfilled"
+  | "carried_forward";
+
+export interface SankalpaItem {
+  id: string;
+  title: string;
+  indicTitle?: string;
+  category: SankalpaCategory;
+  categoryLabel?: string;
+  categoryIndic?: string;
+  targetDate: string; // YYYY-MM-DD
+  status: SankalpaFulfillmentStatus;
+  mantraOrAffirmation?: string;
+  whyItMatters?: string;
+  reflectionNotes?: string;
+  audioTranscribed?: boolean;
+  fulfilledAt?: string;
+  createdAt: string;
+  pointsAwarded?: number;
+}
+
+export interface SankalpaWisdomReminder {
+  id: string;
+  source: string;
+  shlokaSanskrit: string;
+  shlokaTransliteration: string;
+  shlokaTranslation: string;
+  virtueTheme: string;
+  guidanceText: string;
+  progressReflection: string;
+  microPractice: {
+    title: string;
+    duration: string;
+    instruction: string;
+  };
+  dailyNudge: string;
+  timestamp: string;
+  isAiGenerated: boolean;
+}
+
+
